@@ -49,7 +49,6 @@ class TestCalculator {
       System.out.println("Operanzioni fatte: " + calc.NopDone + "\tUltimo risulatato: " + calc.lastRes);
       System.out.println("8 / 4 =" + calc.div(8, 4));
       System.out.println("Operanzioni fatte: " + calc.NopDone + "\tUltimo risulatato: " + calc.lastRes);
-
-      
+      System.out.println("ciao");
   }
 }
