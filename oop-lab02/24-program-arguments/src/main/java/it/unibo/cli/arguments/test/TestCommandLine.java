@@ -1,7 +1,7 @@
 package it.unibo.cli.arguments.test;
 
-class TestCommandLine {
 
+class TestCommandLine {
     public static void main(final String[] args) {
         /*
          * Write the main method in such a way that it iterates through the
@@ -22,5 +22,9 @@ class TestCommandLine {
          *  * the, 3 characters long
          *  * lab, 3 characters long
          */
+        
+         for (String pippo : args) {
+            System.out.println(pippo + ", " + pippo.length() + " characters long");
+        }
     }
 }
