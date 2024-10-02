@@ -42,5 +42,6 @@ class Smartphone {
 
         // 5) Utilizzare il metodo printStringRep per stampare in standard
         // output le informazioni di ciascun telefono
+
     }
 }

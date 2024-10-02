@@ -12,6 +12,23 @@ class Train {
     int firstClassReserved;
     int secondClassReserved;
 
+    void fixed(){
+        this.seats = 50;
+        this.firstClassSeats = 20;
+        this.secondClassSeats = 30;
+    }
+
+    void build(int nfc, int nFCSeats, int nSCSeats){
+        this.seats = nfc;
+        this.firstClassSeats = nFCSeats;
+        this.secondClassSeats = nSCSeats;
+    }
+
+    void reserve(int FirstClass, int SecondClass){
+        this.firstClassReserved += FirstClass;
+        this.secondClassReserved += SecondClass;
+    }
+    
     void deleteAllReservations() {
         this.firstClassReserved = 0;
         this.secondClassReserved = 0;

@@ -10,5 +10,10 @@ class UseConstructorsEvolved {
         // nSCSeats)
         // - nFCSeats = 20; nSCSeats= 200;
         // - nFCSeats = 35; nSCSeats= 165;
+        Train wagon = new Train();
+        wagon.build(500,20,200);
+        Train wagon2 = new Train();
+        wagon2.build(500,35,165);
+
     }
 }
