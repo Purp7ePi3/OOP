@@ -86,11 +86,29 @@ class WorkWithArrays {
     }
     
     static double computeVariance(final int[] array) {
-        return 0;
+        double average = 0;
+        double square = 0;
+        for(int pippo : array){
+            average += pippo;
+        }
+        average = average / array.length;
+        for(int pippo : array){
+            square += Math.pow(pippo - average,2);
+        }
+        return square/array.length;
     }
 
     static int[] revertUpTo(final int[] array, final int element) {
-        return null;
+        int tmp;
+        int last = element-1;
+        final int[] result = Arrays.copyOf(array, array.length);
+        for(int i = 0; i < (element / 2); i++){
+            tmp = result[i];
+            result[i] = result[last];
+            result[last] = tmp;
+            last--;
+        }
+        return result;
     }
 
     static int[] duplicateElements(final int[] array, final int times) {
@@ -188,10 +206,10 @@ class WorkWithArrays {
         
         System.out.println("testEvenElems: " + testEvenElements()); //Work
         System.out.println("testOddElems: " + testOddElements());   //EvenThisOne
-        System.out.println("testGetMostRecurringElem: " + testMostRecurringElement());
+        System.out.println("testGetMostRecurringElem: " + testMostRecurringElement());  //Hard one, maybe illnes doesnt help
         System.out.println("testSortArray: " + testSortArray());    //EvenThis
-        System.out.println("testComputeVariance: " + testComputeVariance());
-        System.out.println("testRevertUpTo: " + testRevertUpTo());
+        System.out.println("testComputeVariance: " + testComputeVariance()); //return wrong i did square/average, i had to do square/array.len
+        System.out.println("testRevertUpTo: " + testRevertUpTo());  //ez one, work
         System.out.println("testDupElems: " + testDuplicateElements()); //Work  
     }
 }
