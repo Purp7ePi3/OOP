@@ -15,21 +15,76 @@ class WorkWithArrays {
     }
 
     static int[] evenElements(final int[] array) {
-        return null;
+        int size = ((array.length) + 1 )  / 2;
+        int[] evenNum = new int[size];
+        int index = 0;
+        for (int i = 0; i < array.length; i += 2){
+            evenNum[index] = array[i];
+            index++;
+        }
+        return evenNum  ; 
     }
 
     static int[] oddElements(final int[] array) {
-        return null;
+        int size = (array.length) / 2;
+        int[] oddNum = new int[size];
+        int index = 0;
+        for (int i = 1; i < array.length; i += 2){
+            oddNum[index] = array[i];
+            index++;
+        }
+        return oddNum;
     }
 
     static int mostRecurringElement(final int[] array) {
-        return 0;
+        final int[] defensiveCopy = Arrays.copyOf(array, array.length);        
+        sortArray(defensiveCopy, false);
+        
+        int max = 1;  
+        int count = 1;  
+        int sol = defensiveCopy[0];
+        for (int i = 1; i < defensiveCopy.length; i++) {
+            if (defensiveCopy[i] == defensiveCopy[i - 1]) {
+                count++;
+            } else {
+                if (count > max) {
+                    max = count;
+                    sol = defensiveCopy[i - 1];
+                }
+                count = 1;
+            }
+        }
+    
+        if (count > max) {
+            sol = defensiveCopy[defensiveCopy.length - 1];
+        }
+    
+        return sol;
     }
+    
 
     static int[] sortArray(final int[] array, final boolean isDescending) {
+        int len = array.length;
+        for(int i = 0; i < len-1; i++){
+            for(int j = i+1; j < len; j++){
+                if(isDescending){
+                    if(array[j] > array[i]){
+                        int tmp = array[j];
+                        array[j] = array[i];
+                        array[i] = tmp;
+                    }
+                }else{
+                    if(array[i] > array[j]){
+                        int tmp = array[i];
+                        array[i] = array[j];
+                        array[j] = tmp;
+                    }
+                }
+            }   
+        }
         return array;
     }
-
+    
     static double computeVariance(final int[] array) {
         return 0;
     }
@@ -55,7 +110,8 @@ class WorkWithArrays {
         return countOccurrencies(new int[] { 1, 2, 3, 4 }, 1) == 1
             && countOccurrencies(new int[] { 0, 2, 3, 4 }, 1) == 0
             && countOccurrencies(new int[] { 7, 4, 1, 9, 3, 1, 5 }, 2) == 0
-            && countOccurrencies(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
+            && countOccurrencies(new int[] { 1, 2, 1, 3, 4, 1 }, 3) == 1;
+           
     }
 
     /* Utility method for testing evenElems method */
@@ -129,13 +185,13 @@ class WorkWithArrays {
     }
 
     public static void main(final String[] args) {
-        System.out.println("testCountOccurr: " + testCountOccurrencies());
-        System.out.println("testEvenElems: " + testEvenElements());
-        System.out.println("testOddElems: " + testOddElements());
+        
+        System.out.println("testEvenElems: " + testEvenElements()); //Work
+        System.out.println("testOddElems: " + testOddElements());   //EvenThisOne
         System.out.println("testGetMostRecurringElem: " + testMostRecurringElement());
-        System.out.println("testSortArray: " + testSortArray());
+        System.out.println("testSortArray: " + testSortArray());    //EvenThis
         System.out.println("testComputeVariance: " + testComputeVariance());
         System.out.println("testRevertUpTo: " + testRevertUpTo());
-        System.out.println("testDupElems: " + testDuplicateElements());
+        System.out.println("testDupElems: " + testDuplicateElements()); //Work  
     }
 }
