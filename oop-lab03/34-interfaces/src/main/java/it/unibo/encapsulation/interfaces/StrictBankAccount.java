@@ -1,6 +1,6 @@
 package it.unibo.encapsulation.interfaces;
 
-public class SimpleBankAccount implements BankAccount {
+public class StrictBankAccount implements BankAccount {
 
     /*
      * Aggiungere i seguenti campi:
@@ -12,13 +12,13 @@ public class SimpleBankAccount implements BankAccount {
     private double balance;
     private int ntx;
     private final static double ATM_TRANSACTION_FEE = 1;
-    //private final static double ManagementFees = 1.2;
+    private final static double ManagementFees = 5;
 
     /*
      * Creare un costruttore pubblico che prenda in ingresso un intero (ossia l'id
      * dell'utente) ed un double (ossia, l'ammontare iniziale del conto corrente).
      */
-    public SimpleBankAccount(final int id, final double balance) {
+    public StrictBankAccount(final int id, final double balance) {
         this.id = id;
         this.balance = balance;
     }
@@ -60,8 +60,10 @@ public class SimpleBankAccount implements BankAccount {
          * Il prelievo va a buon fine solo se l'id utente corrisponde
          */
         if(id == this.id){
-            this.ntx++;
-            this.balance -= amount;
+            if(balance - amount > 0){
+                this.ntx++;
+                this.balance -= amount;
+            }
         }
     }
 
@@ -87,8 +89,11 @@ public class SimpleBankAccount implements BankAccount {
          * corrisponde
          */
         if(id == this.id){
-            this.ntx++;
-            this.balance -= amount+ATM_TRANSACTION_FEE;
+            if(balance - (amount - ATM_TRANSACTION_FEE) > 0){
+                this.ntx++;
+                this.balance -= amount+ATM_TRANSACTION_FEE;
+            }
+
         }
     }
 
@@ -96,5 +101,8 @@ public class SimpleBankAccount implements BankAccount {
         /*
          * Riduce il bilancio del conto di un ammontare pari alle spese di gestione
          */
+        if(id == this.id){
+            this.balance -= ManagementFees + 0.1 * ntx;
+        }
     }
 }

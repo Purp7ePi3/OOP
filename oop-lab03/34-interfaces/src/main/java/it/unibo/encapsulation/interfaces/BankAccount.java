@@ -19,4 +19,6 @@ public interface BankAccount {
     double getBalance();
 
     int getTransactionsCount();
+
+    
 }
