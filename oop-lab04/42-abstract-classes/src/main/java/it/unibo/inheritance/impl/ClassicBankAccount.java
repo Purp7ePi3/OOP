@@ -4,11 +4,8 @@ import it.unibo.inheritance.api.AccountHolder;
 
 public class ClassicBankAccount extends AbstractBankAccount{
 
-    private int transactions;
-
     public ClassicBankAccount(AccountHolder accountHolder, double balance) {
         super(accountHolder, balance);
-        this.transactions = 0;
     }
     
     public void chargeManagementFees(final int id){
