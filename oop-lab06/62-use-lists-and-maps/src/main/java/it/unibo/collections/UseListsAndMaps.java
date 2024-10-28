@@ -2,9 +2,11 @@ package it.unibo.collections;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
@@ -112,6 +114,22 @@ public final class UseListsAndMaps {
             TotalPouplation += people; 
         }
         System.out.println("Total World Population -> " + TotalPouplation);
+
+
+        List<Entry<String, Long>> entryList = new ArrayList<>(continentPopulation.entrySet());
+
+        // Sort the list by values (population)
+        entryList.sort((e1, e2) -> e1.getKey().compareTo(e2.getKey()));
+
+        // Store the sorted entries in a LinkedHashMap to maintain order
+        Map<String, Long> sortedMap = new LinkedHashMap<>();
+        for (Entry<String, Long> entry : entryList) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+            System.out.println(entry.getKey() + "->" + entry.getValue());
+        }
+
+        // Print the sorted map entries
+        
     }
 
     private static void measureInsertionTime(List<Integer> list, String listType) {
@@ -140,5 +158,3 @@ public final class UseListsAndMaps {
 
     }
 }
-
-
