@@ -9,8 +9,9 @@ import it.unibo.collections.social.api.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,6 +38,8 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * a generic-type Map:  think of what type of keys and values would best suit the requirements
      */
 
+    private final Map<String, Set<U>> followedUsersByGroup = new LinkedHashMap<>();
+
     /*
      * [CONSTRUCTORS]
      *
@@ -48,6 +51,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * - username
      * - age and every other necessary field
      */
+
     /**
      * Builds a user participating in a social network.
      *
@@ -62,7 +66,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      *            application
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-        super(null, null, null, 0);
+        super(name, surname, user, userAge);
     }
 
     /*
@@ -76,7 +80,10 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        return false;
+        
+        Set<U> usersInGroup = followedUsersByGroup.computeIfAbsent(circle, k -> new HashSet<>());
+
+        return usersInGroup.add(user);
     }
 
     /**
@@ -84,13 +91,20 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * [NOTE] If no group with groupName exists yet, this implementation must
      * return an empty Collection.
      */
+
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+        return new ArrayList<>(followedUsersByGroup.getOrDefault(groupName, Collections.emptySet()));
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+        
+        Set<U> followed = new HashSet<>();
+        for(Set<U> group : followedUsersByGroup.values()){
+            followed.addAll(group);
+        }
+        
+        return new ArrayList<>(followed);
     }
 }
