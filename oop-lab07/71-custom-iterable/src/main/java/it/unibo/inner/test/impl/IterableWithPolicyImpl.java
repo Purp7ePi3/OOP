@@ -60,11 +60,12 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
         public boolean hasNext() {
             while (currentIndex < elements.size()) {
                 T elem = elements.get(currentIndex);
-                if (filter.test(elem)) {
+                if (!filter.test(elem)) {
+                    currentIndex++;
+                }else{
                     return true;
                 }
-                currentIndex++;
-            }
+                }
             return false;
         }
 

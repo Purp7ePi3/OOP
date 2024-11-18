@@ -11,6 +11,7 @@ import static it.unibo.collections.test.Assertions.assertContentEqualsInAnyOrder
  * Simple test class for {@link Warehouse}.
  *
  */
+
 public final class UseWarehouse {
 
     private UseWarehouse() {

@@ -58,7 +58,7 @@ public final class UseSet {
 
         /*
          * 6) Verifies whether all the numbers left in the set are even
-         */
+        */
         for (String c : treeSet) {
             int num = Integer.parseInt(c);
             if(num % 3 == 0){
