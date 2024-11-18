@@ -1,5 +1,4 @@
 package it.unibo.functional;
-
 import it.unibo.functional.api.Function;
 import org.junit.jupiter.api.Test;
 

@@ -3,7 +3,6 @@
 Per ogni passo,
 si annoti in questo file il comando utilizzato ed il suo output,
 per confrontarlo con le soluzioni.
-
 ### Si crei una nuova directory
 
 ### Si inizializzi un repository Git dentro la cartella suddetta.
