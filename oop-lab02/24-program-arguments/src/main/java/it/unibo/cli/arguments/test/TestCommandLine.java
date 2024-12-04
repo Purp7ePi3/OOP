@@ -23,7 +23,7 @@ class TestCommandLine {
          *  * lab, 3 characters long
          */
         
-         for (String pippo : args) {
+        for (String pippo : args) {
             System.out.println(pippo + ", " + pippo.length() + " characters long");
         }
     }
